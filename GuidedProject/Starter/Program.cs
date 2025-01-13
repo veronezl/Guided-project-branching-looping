@@ -77,32 +77,27 @@ for (int i = 0; i < maxPets; i++)
 // display the top-level menu options
 do
 {
+    Console.Clear();
+
+    Console.WriteLine("Welcome to the Contoso PetFriends app. Your main menu options are:");
+    Console.WriteLine(" 1. List all of our current pet information");
+    Console.WriteLine(" 2. Add a new animal friend to the ourAnimals array");
+    Console.WriteLine(" 3. Ensure animal ages and physical descriptions are complete");
+    Console.WriteLine(" 4. Ensure animal nicknames and personality descriptions are complete");
+    Console.WriteLine(" 5. Edit an animal’s age");
+    Console.WriteLine(" 6. Edit an animal’s personality description");
+    Console.WriteLine(" 7. Display all cats with a specified characteristic");
+    Console.WriteLine(" 8. Display all dogs with a specified characteristic");
+    Console.WriteLine();
+    Console.WriteLine("Enter your selection number (or type Exit to exit the program)");
+
     // Pause code execution
     readResult = Console.ReadLine();
+    if (readResult != null)
+    {
+        menuSelection = readResult.ToLower();
+    }
 } while (menuSelection != "exit");
-
-Console.Clear();
-
-Console.WriteLine("Welcome to the Contoso PetFriends app. Your main menu options are:");
-Console.WriteLine(" 1. List all of our current pet information");
-Console.WriteLine(" 2. Add a new animal friend to the ourAnimals array");
-Console.WriteLine(" 3. Ensure animal ages and physical descriptions are complete");
-Console.WriteLine(" 4. Ensure animal nicknames and personality descriptions are complete");
-Console.WriteLine(" 5. Edit an animal’s age");
-Console.WriteLine(" 6. Edit an animal’s personality description");
-Console.WriteLine(" 7. Display all cats with a specified characteristic");
-Console.WriteLine(" 8. Display all dogs with a specified characteristic");
-Console.WriteLine();
-Console.WriteLine("Enter your selection number (or type Exit to exit the program)");
-
-
-/*
-readResult = Console.ReadLine();
-if (readResult != null)
-{
-    menuSelection = readResult.ToLower();
-}
-*/
 
 //Console.WriteLine($"You selected menu option {menuSelection}.");
 //onsole.WriteLine("Press the Enter key to continue");
@@ -120,49 +115,89 @@ switch (menuSelection)
         break;
     case "2":
         // Add a new animal friend to the ourAnimals array
-        Console.WriteLine("this app feature is coming soon - please check back to see progress.");
-        Console.WriteLine("Press the Enter key to continue.");
-        readResult = Console.ReadLine();
+        string anotherPet = "y";
+        int petCount = 0;
+        for (int i = 0; i < maxPets; i++)
+        {
+            if (ourAnimals[i, 0] != "ID #: ")
+            {
+                petCount += 1;
+            }
+
+        }
+
+        if (petCount < maxPets)
+        {
+            Console.WriteLine($"We currently have {petCount} pets that need homes. We can manage {(maxPets - petCount)} more.");
+        }
+
+        while (anotherPet == "y" && petCount < maxPets)
+        {
+            // increment petCount (the array is zero-based, so we increment the counter after adding to the array)
+            petCount = petCount + 1;
+            // check maxPet limit
+            if (petCount < maxPets)
+            {
+                // another pet?
+                Console.WriteLine("Do you want to enter info for another pet (y/n)");
+            }
+            do
+            {
+                readResult = Console.ReadLine();
+                if (readResult != null)
+                {
+                    anotherPet = readResult.ToLower();
+                }
+
+            } while (anotherPet != "y" && anotherPet != "n");
+        }
+        if (petCount >= maxPets)
+        {
+            Console.WriteLine("We have reached our limit on the number of pets that we can manage.");
+            Console.WriteLine("Press the Enter key to continue.");
+            readResult = Console.ReadLine();
+        }
         break;
+
     case "3":
-        // Ensure animal ages and physical descriptions are complete
-        Console.WriteLine("Challenge Project - please check back soon to see progress.");
-        Console.WriteLine("Press the Enter key to continue.");
-        readResult = Console.ReadLine();
-        break;
-    case "4":
-        // Ensure animal nicknames and personality descriptions are complete
-        Console.WriteLine("Challenge Project - please check back soon to see progress.");
-        Console.WriteLine("Press the Enter key to continue.");
-        readResult = Console.ReadLine();
-        break;
-    case "5":
-        // Edit an animal’s age
-        Console.WriteLine("UNDER CONSTRUCTION - please check back next month to see progress.");
-        Console.WriteLine("Press the Enter key to continue.");
-        readResult = Console.ReadLine();
-        break;
-    case "6":
-        // Edit an animal’s personality description
-        Console.WriteLine("UNDER CONSTRUCTION - please check back next month to see progress.");
-        Console.WriteLine("Press the Enter key to continue.");
-        readResult = Console.ReadLine();
-        break;
-    case "7":
-        // Display all cats with a specified characteristic
-        Console.WriteLine("UNDER CONSTRUCTION - please check back next month to see progress.");
-        Console.WriteLine("Press the Enter key to continue.");
-        readResult = Console.ReadLine();
-        break;
-    case "8":
-        // Display all dogs with a specified characteristic
-        Console.WriteLine("UNDER CONSTRUCTION - please check back next month to see progress.");
-        Console.WriteLine("Press the Enter key to continue.");
-        readResult = Console.ReadLine();
-        break;
-    default:
-        Console.WriteLine("UNDER CONSTRUCTION - please check back next month to see progress.");
-        Console.WriteLine("Press the Enter key to continue.");
-        readResult = Console.ReadLine();
-        break;
+    // Ensure animal ages and physical descriptions are complete
+    Console.WriteLine("Challenge Project - please check back soon to see progress.");
+    Console.WriteLine("Press the Enter key to continue.");
+    readResult = Console.ReadLine();
+    break;
+case "4":
+    // Ensure animal nicknames and personality descriptions are complete
+    Console.WriteLine("Challenge Project - please check back soon to see progress.");
+    Console.WriteLine("Press the Enter key to continue.");
+    readResult = Console.ReadLine();
+    break;
+case "5":
+    // Edit an animal’s age
+    Console.WriteLine("UNDER CONSTRUCTION - please check back next month to see progress.");
+    Console.WriteLine("Press the Enter key to continue.");
+    readResult = Console.ReadLine();
+    break;
+case "6":
+    // Edit an animal’s personality description
+    Console.WriteLine("UNDER CONSTRUCTION - please check back next month to see progress.");
+    Console.WriteLine("Press the Enter key to continue.");
+    readResult = Console.ReadLine();
+    break;
+case "7":
+    // Display all cats with a specified characteristic
+    Console.WriteLine("UNDER CONSTRUCTION - please check back next month to see progress.");
+    Console.WriteLine("Press the Enter key to continue.");
+    readResult = Console.ReadLine();
+    break;
+case "8":
+    // Display all dogs with a specified characteristic
+    Console.WriteLine("UNDER CONSTRUCTION - please check back next month to see progress.");
+    Console.WriteLine("Press the Enter key to continue.");
+    readResult = Console.ReadLine();
+    break;
+default:
+    Console.WriteLine("UNDER CONSTRUCTION - please check back next month to see progress.");
+    Console.WriteLine("Press the Enter key to continue.");
+    readResult = Console.ReadLine();
+    break;
 }
